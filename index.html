@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+
+    <title>MagicTCG - PUC Minas</title>
+
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- iOS meta tags and icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MagicTCG">
+    <link rel="apple-touch-icon" href="icons/152.png">
+
+    <meta name="description" content="MagicTCG">
+    <meta name="theme-color" content="#ff5f66" /> 
+  </head>
+  <body>
+
+    <div id="conteudo" style="display: none;">
+
+        <div class="info_carta2">
+            
+            <img id="btVoltar" src="imgs/arrow_left.png" style="background-color: black;">
+
+            <h1 id="conteudo_nome">---</h1>
+            <h2><span class="badge rounded-pill bg-alert-poke" id="conteudo_tipo">Success</span></h2>            
+        </div>
+
+        <div class="card_info">
+            
+            <img id="conteudo_img" class="img_carta2 animate__animated animate__bounce">
+            
+            <div class="detalhe_carta">
+                <h4>Descrição:</h4>
+                <p id="conteudo_descricao">---</p>
+
+                <div class="alert alert-primary" role="alert">
+                    <strong>Ataque:</strong> <span id="conteudo_ataque">---</span>
+                </div>
+                
+                <div class="alert alert-secondary" role="alert">
+                    <strong>Defesa:</strong> <span id="conteudo_defesa">---</span>
+                </div>
+
+                <div class="alert alert-success" role="alert">
+                    <strong>Mana:</strong> <span id="conteudo_altura">---</span>
+                </div>                
+            </div>
+
+        </div>
+
+    </div>
+
+    <header class="container-fluid fixed-top">
+        <h1 class="title_logo">MagicDex</h1>
+        <img src="imgs/logo.png" class="logo_home rotate-center">
+    </header>
+
+    <main class="container">
+            
+        <div id="resultados" class="row load">
+
+        </div>
+
+        <div id="col-12">
+            <div class="d-grid gap-2">
+                <button class="btn btn-outline-secondary" id="btCarregarMais" type="button">Ver Mais</button>
+                </div>
+        </div>                
+  
+    </main>
+
+    <footer class="container-fluid fixed-bottom">
+        <input type="button" value="Instalar App" hidden id="btInstall" class="btn btn-success" >
+        <input type="button" value="+" class="btn btn-success btn-material">
+    </footer>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+        let swRegistro = null;
+
+        if('serviceWorker' in navigator){
+
+            window.addEventListener('load', ()=>{
+
+                navigator.serviceWorker.register('service_worker.js').then((reg) => {
+
+                    console.log("Service Worker registrado com sucesso!");
+                    swRegistro = reg;
+                    inicializarInstalacao();
+                });
+
+            });
+
+        }
+
+    </script>
+
+  </body>
+</html>

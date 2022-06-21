@@ -1,0 +1,266 @@
+@font-face {
+    font-family: 'Carta Solid';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Carta Solid'), url('Carta_Solid.woff') format('woff');
+}
+
+.title_logo{
+    font-family: 'Carta Solid', sans-serif;
+    font-size: 2.4em;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+header{
+    background: green;
+    height: 120px;
+    background: #FFFFFF;
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #FFFFFF 80%, #FFFFFF 100%);
+    background: -webkit-linear-gradient(top, #FFFFFF 0%, #FFFFFF 80%, #FFFFFF 100%);
+    background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 80%, #ffffff00 100%);    
+}
+.logo_home{
+    position: absolute;
+    width: 155px;
+    right: -47px;
+    top: -30px;
+}
+footer{
+    background: #ededed;
+    padding: 15px;
+    min-height: 60px;
+}
+
+main{
+    margin-top: 135px;
+    margin-bottom: 60px;
+}
+
+.card_magic{
+    background: #d4d6d5;
+    background-image: url("../imgs/logo_white.png");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: 70px 20px;
+    width: 100%;
+    height: 120px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    padding: 15px;
+    overflow: hidden;
+    position: relative;
+}
+.info_carta{
+    z-index: 9;
+    position: relative;
+    width: 50%;
+}
+.info_carta h3{
+    color: white;
+    font-size: 1rem;
+}
+
+.info_carta2 h1{
+    color: white;
+    font-size: 2rem;
+}
+.info_carta2 h2{
+    width: 150px;
+    display: inline-block;
+}
+
+.img_carta{
+    width: 70px;
+    position: absolute;
+    right: 4px;
+    bottom: 1px;
+}
+
+.bg-alert-magic{
+    background-color: rgba(255, 255, 255, 0.305);
+}
+
+.btn-material{
+    position: absolute;
+    bottom: 40px;
+    right: 50%;
+    margin-right: -24px;    
+    border-radius: 24px;
+    width: 48px;
+    height: 48px;
+    background: #6b76e1;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+#conteudo{
+    background-image: url("../imgs/bg_detail.png");
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0px;
+}
+
+.load{
+    background-image: url("../imgs/load.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 500px;
+}
+
+#btVoltar{
+    width: 48px;
+    opacity: 0.5;
+}
+#btVoltar:hover{
+    opacity: 1;
+
+}
+
+.info_carta2{    
+    position: relative;    
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.info_carta2 h3{
+    position: absolute;
+    width: 80px;
+    color: white;    
+    right: 0px; 
+
+}   
+
+.card_info{
+    background: white;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;    
+    position: absolute;
+    height: 55%;
+    bottom: 0px;    
+}
+
+.detalhe_carta{
+    position: relative;
+    overflow: scroll;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 40px;
+    overflow: scroll;
+    height: 100%;
+}
+
+.img_carta2{
+    z-index: 9;
+    position: absolute;
+    width: 130px;
+    left: 57%;
+    margin-left: -100px;
+    top: -150px;
+}
+
+#btCarregarMais{
+    margin-bottom: 30px;
+}
+
+.color_poison{
+    background-color: #00caa5 !important;
+}
+
+.color_White{
+    background-color: #A890F0 !important;
+}
+
+.color_Blue{
+    background-color: #5cbaff !important;
+}
+
+.color_Red{
+    background-color: #ff5f66 !important;
+}
+
+.color_Black{
+    background-color: #000000 !important;
+}
+
+
+.color_fire{
+    background-color: #ff5f66 !important;
+}
+
+.color_Blue{
+    background-color: #5cbaff !important;
+}
+
+.color_Red{
+    background-color: #ff5f66 !important;
+}
+
+.color_Black{
+    background-color: #000000 !important;
+}
+
+.color_electric{
+    background-color: #ffd759 !important;
+}
+
+.color_normal{background-color: #A8A878;}
+.color_fighting{background-color: #C03028;}
+.color_flying{background-color: #A890F0;}
+.color_ground{background-color: #E0C068;}
+.color_rock{background-color: #B8A038;}
+.color_bug{background-color: #A8B820;}
+.color_ghost{background-color: #705898;}
+.color_steel{background-color: #B8B8D0;}
+.color_grass{background-color: #48CFB2;}
+.color_psychic{background-color: #F85888;}
+.color_ice{background-color: #98D8D8;}
+.color_dragon{background-color: #7038F8;}
+.color_dark{background-color: #705848;}
+.color_fairy{background-color: #EE99AC;}
+
+
+@media only screen and (min-width: 920px) {
+    .img_carta2 {
+        z-index: 9;
+        position: absolute;
+        width: 280px;
+        left: 55%;
+        margin-left: -210px;
+        top: -350px;
+    }
+}
+
+/**
+ * ----------------------------------------
+ * animation rotate-center
+ * ----------------------------------------
+ */
+ .rotate-center {
+	-webkit-animation: rotate-center 1.6s linear infinite both;
+	        animation: rotate-center 1.6s linear infinite both;
+}
+
+ @-webkit-keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }

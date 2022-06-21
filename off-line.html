@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+
+    <title>MagicTCG - PUC Minas</title>
+
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- iOS meta tags and icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Magicdex">
+    <link rel="apple-touch-icon" href="icons/152.png">
+
+    <meta name="description" content="Magicdex">
+    <meta name="theme-color" content="#ff5f66" /> 
+  </head>
+  <body>
+
+    <div id="conteudo" style="display: none;">
+
+        <div class="info_carta2">
+            
+            <img id="btVoltar" src="imgs/arrow_left.png" style="background-color: black;">
+
+            <h1 id="conteudo_nome">---</h1>
+            <h3 id="conteudo_numero">#000</h3>
+            <h2><span class="badge rounded-pill bg-alert-magic" id="conteudo_tipo">Success</span></h2>            
+        </div>
+
+        <div class="card_info">
+            
+            <img id="conteudo_img" src="imgs/offline_carta.png" class="img_carta2 animate__animated animate__bounce">
+            
+            <div class="detalhe_carta">
+                <h4>Descrição:</h4>
+                <p id="conteudo_descricao">---</p>
+
+                <div class="alert alert-primary" role="alert">
+                    <strong>Power:</strong> <span id="conteudo_ataque">---</span>
+                </div>
+                
+                <div class="alert alert-secondary" role="alert">
+                    <strong>Thougness:</strong> <span id="conteudo_defesa">---</span>
+                </div>
+
+                <div class="alert alert-success" role="alert">
+                    <strong>Mana:</strong> <span id="conteudo_altura">---</span>
+                </div>                
+            </div>
+
+        </div>
+
+    </div>
+
+    <header class="container-fluid fixed-top">
+        <h1 class="title_logo">MagicDex</h1>
+        <img src="imgs/logo.png" class="logo_home rotate-center">
+    </header>
+
+    <main class="container">
+        <div id="row">
+            <div id="col-12">
+                <div class="alert alert-warning" role="alert">
+                    Você está acessando a versão offline da aplicação. Conecte a internet para acessar os conteúdos completos.
+                </div>
+            </div>
+        </div>
+
+        <div id="resultados" class="row load">
+
+        </div>
+
+        <div id="col-12">
+            <div class="d-grid gap-2">
+                <button class="btn btn-outline-secondary" id="btCarregarMais" type="button">Ver Mais</button>
+                </div>
+        </div>                
+  
+    </main>
+
+    <footer class="container-fluid fixed-bottom">
+        <input type="button" value="Instalar App" hidden id="btInstall" class="btn btn-success">
+        <input type="button" value="+" class="btn btn-success btn-material">
+    </footer>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+
+    /*
+    #
+    # Globais
+    #
+    */
+    var quant_carta = 10;
+    var contar = 1;
+    const endpoint_carta = "/carta.json";
+    var tela_detalhe = document.getElementById("conteudo");
+    var resultados = document.getElementById("resultados");
+    var data_json;
+    var CACHE_DINAMICO = "magicdex_dinamico";
+
+    /*
+    #
+    # Requisição AJAX
+    #
+    */
+    function carregar_carta(){
+        
+        data_json = JSON.parse(localStorage.getItem(CACHE_DINAMICO))
+
+        if(data_json.length > 0){
+            resultados.className = "row";
+            //Carga inicial
+            imprimir_carta();
+        }        
+        
+    }
+
+    carregar_carta();
+
+    var files_img_carta = [];
+
+    function imprimir_carta(){
+
+        let html_conteudo = "";
+        let limite;
+        if((contar+quant_carta) < data_json.length){
+            limite = (contar+quant_carta);
+        }else{
+            limite = data_json.length;
+            btCarregarMais.style.display = "none";
+        }
+
+        for(let i=contar; i < limite; i++){
+            //Montar Card
+            html_conteudo+=card_carta(i,data_json[i].name,data_json[i].type,data_json[i].imageUrl);  
+
+        }
+
+        resultados.innerHTML += html_conteudo;
+
+        contar+=quant_carta;
+    }
+
+    /*
+    #
+    # Comportamento Botões
+    #
+    */
+
+    let btVoltar = document.getElementById("btVoltar");
+
+    btVoltar.addEventListener("click", function(){
+        let color = tela_detalhe.className.substring(tela_detalhe.className.indexOf("color_"));
+        tela_detalhe.className = "animate__animated animate__bounceOutLeft "+color;
+        
+        setTimeout(function(){document.getElementById("conteudo_img").style.display = "none";}, 500);
+    });
+
+    let btCarregarMais = document.getElementById("btCarregarMais");
+
+    btCarregarMais.addEventListener("click", function(){
+        imprimir_carta();
+    });
+
+    function btCard(id){
+        tela_detalhe.style.display = "block";
+
+        document.getElementById("conteudo_img").style.display = "block";
+        tela_detalhe.className = "animate__animated animate__bounceInLeft color_"+data_json[id].type;   
+        document.getElementById("conteudo_nome").innerHTML = data_json[id].name;
+        document.getElementById("conteudo_numero").innerHTML = "#"+padLeadingZeros(data_json[id].id, 3);;
+        document.getElementById("conteudo_tipo").innerHTML = data_json[id].type;
+        document.getElementById("conteudo_descricao").innerHTML = data_json[id].description;
+        document.getElementById("conteudo_ataque").innerHTML = data_json[id].attack;
+        document.getElementById("conteudo_defesa").innerHTML = data_json[id].defense;
+        document.getElementById("conteudo_altura").innerHTML = data_json[id].height;
+    }
+
+
+    /*
+    #
+    # Sistema de Template
+    #
+    */
+
+    function card_magic(id,nome,tipo,img){
+
+        return '<div class="col-6 col-md-3" onClick="javascript:btCard(\''+id+'\');" data-id="'+id+'">'+
+                    '<div class="card_magic color_'+tipo+'">'+
+                    '<div class="info_carta">'+
+                        '<h3>'+nome+'</h3>'+
+                        '<span class="badge rounded-pill bg-alert-magic">'+tipo+'</span>'+
+                    '</div>'+
+                    '<img src="imgs/offline_carta.png" class="img_carta">'+
+                    '</div>'+
+                '</div>';
+    }
+
+    
+    /*
+    #
+    # Funções Extras
+    #
+    */
+    function padLeadingZeros(num, size) {
+        var s = num+"";
+        while (s.length < size) s = "0" + s;
+        return s;
+    }
+
+    </script>
+
+
+
+  </body>
+</html>
